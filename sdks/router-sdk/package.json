@@ -4,8 +4,7 @@
   "repository": "https://github.com/XSwapProtocol/sdks.git",
   "keywords": [
     "xswapprotocol",
-    "xdc",
-    "xsp"
+    "xdc"
   ],
   "license": "MIT",
   "main": "dist/index.js",
