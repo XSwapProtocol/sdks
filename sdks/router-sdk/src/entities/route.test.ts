@@ -6,11 +6,11 @@ import { Route as V2RouteSDK, Pair } from '@x-swap-protocol/v2-sdk'
 import { RouteV2 } from './route'
 
 describe('RouteV3', () => {
-  const ETHER = Ether.onChain(1)
-  const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0')
-  const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1')
-  const token2 = new Token(1, '0x0000000000000000000000000000000000000003', 18, 't2')
-  const weth = WETH9[1]
+  const ETHER = Ether.onChain(50)
+  const token0 = new Token(50, '0x0000000000000000000000000000000000000001', 18, 't0')
+  const token1 = new Token(50, '0x0000000000000000000000000000000000000002', 18, 't1')
+  const token2 = new Token(50, '0x0000000000000000000000000000000000000003', 18, 't2')
+  const weth = WETH9[50]
 
   const pool_0_1 = new Pool(token0, token1, FeeAmount.MEDIUM, encodeSqrtRatioX96(1, 1), 0, 0, [])
   const pool_0_weth = new Pool(token0, weth, FeeAmount.MEDIUM, encodeSqrtRatioX96(1, 1), 0, 0, [])
@@ -71,40 +71,40 @@ describe('RouteV3', () => {
 
   describe('#midPrice', () => {
     const pool_0_1 = new Pool(
-        token0,
-        token1,
-        FeeAmount.MEDIUM,
-        encodeSqrtRatioX96(1, 5),
-        0,
-        TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(1, 5)),
-        []
+      token0,
+      token1,
+      FeeAmount.MEDIUM,
+      encodeSqrtRatioX96(1, 5),
+      0,
+      TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(1, 5)),
+      []
     )
     const pool_1_2 = new Pool(
-        token1,
-        token2,
-        FeeAmount.MEDIUM,
-        encodeSqrtRatioX96(15, 30),
-        0,
-        TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(15, 30)),
-        []
+      token1,
+      token2,
+      FeeAmount.MEDIUM,
+      encodeSqrtRatioX96(15, 30),
+      0,
+      TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(15, 30)),
+      []
     )
     const pool_0_weth = new Pool(
-        token0,
-        weth,
-        FeeAmount.MEDIUM,
-        encodeSqrtRatioX96(3, 1),
-        0,
-        TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(3, 1)),
-        []
+      token0,
+      weth,
+      FeeAmount.MEDIUM,
+      encodeSqrtRatioX96(3, 1),
+      0,
+      TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(3, 1)),
+      []
     )
     const pool_1_weth = new Pool(
-        token1,
-        weth,
-        FeeAmount.MEDIUM,
-        encodeSqrtRatioX96(1, 7),
-        0,
-        TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(1, 7)),
-        []
+      token1,
+      weth,
+      FeeAmount.MEDIUM,
+      encodeSqrtRatioX96(1, 7),
+      0,
+      TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(1, 7)),
+      []
     )
 
     it('correct for 0 -> 1', () => {
@@ -180,9 +180,9 @@ describe('RouteV3', () => {
 
 describe('RouteV2', () => {
   const ETHER = Ether.onChain(1)
-  const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0')
-  const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1')
-  const weth = WETH9[1]
+  const token0 = new Token(50, '0x0000000000000000000000000000000000000001', 18, 't0')
+  const token1 = new Token(50, '0x0000000000000000000000000000000000000002', 18, 't1')
+  const weth = WETH9[50]
   const pair_0_1 = new Pair(CurrencyAmount.fromRawAmount(token0, '100'), CurrencyAmount.fromRawAmount(token1, '200'))
   const pair_0_weth = new Pair(CurrencyAmount.fromRawAmount(token0, '100'), CurrencyAmount.fromRawAmount(weth, '100'))
   const pair_1_weth = new Pair(CurrencyAmount.fromRawAmount(token1, '175'), CurrencyAmount.fromRawAmount(weth, '100'))
