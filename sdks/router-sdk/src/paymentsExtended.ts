@@ -1,7 +1,7 @@
 import { Interface } from '@ethersproject/abi'
-import { Percent, Token, validateAndParseAddress } from '@uniswap/sdk-core'
+import { Percent, Token, validateAndParseAddress } from '@x-swap-protocol/sdk-core'
 import { abi } from '@uniswap/swap-router-contracts/artifacts/contracts/interfaces/IPeripheryPaymentsWithFeeExtended.sol/IPeripheryPaymentsWithFeeExtended.json'
-import { FeeOptions, Payments, toHex } from '@uniswap/v3-sdk'
+import { FeeOptions, Payments, toHex } from '@x-swap-protocol/v3-sdk'
 import JSBI from 'jsbi'
 
 function encodeFeeBips(fee: Percent): string {
@@ -37,10 +37,10 @@ export abstract class PaymentsExtended {
   }
 
   public static encodeSweepToken(
-    token: Token,
-    amountMinimum: JSBI,
-    recipient?: string,
-    feeOptions?: FeeOptions
+      token: Token,
+      amountMinimum: JSBI,
+      recipient?: string,
+      feeOptions?: FeeOptions
   ): string {
     // if there's a recipient, just pass it along
     if (typeof recipient === 'string') {
