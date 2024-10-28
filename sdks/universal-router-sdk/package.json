@@ -1,10 +1,10 @@
 {
-  "name": "@uniswap/universal-router-sdk",
+  "name": "@x-swap-protocol/universal-router-sdk",
   "description": "sdk for integrating with the Universal Router contracts",
-  "repository": "https://github.com/Uniswap/sdks.git",
+  "repository": "https://github.com/XSwapProtocol/sdks.git",
   "keywords": [
-    "uniswap",
-    "ethereum"
+    "xswapprotocol",
+    "xsp"
   ],
   "license": "MIT",
   "main": "dist/index.js",
@@ -72,7 +72,7 @@
     "extends": "semantic-release-monorepo",
     "branches": [
       {
-        "name": "main",
+        "name": "master",
         "prerelease": false
       }
     ],
