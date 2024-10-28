@@ -1,7 +1,7 @@
 import JSBI from 'jsbi'
 import { ethers } from 'ethers'
-import { MixedRouteTrade, MixedRouteSDK, Trade as RouterTrade } from '@uniswap/router-sdk'
-import { Trade as V2Trade, Pair, Route as RouteV2, computePairAddress } from '@uniswap/v2-sdk'
+import { MixedRouteTrade, MixedRouteSDK, Trade as RouterTrade } from '@x-swap-protocol/router-sdk'
+import { Trade as V2Trade, Pair, Route as RouteV2, computePairAddress } from '@x-swap-protocol/v2-sdk'
 import {
   Trade as V3Trade,
   Pool,
@@ -10,10 +10,9 @@ import {
   TickMath,
   TICK_SPACINGS,
   FeeAmount,
-} from '@uniswap/v3-sdk'
-import { Route as RouteV4, Trade as V4Trade } from '@uniswap/v4-sdk'
+} from '@x-swap-protocol/v3-sdk'
 import { SwapOptions } from '../../src'
-import { CurrencyAmount, TradeType, Ether, Token, Percent, Currency } from '@uniswap/sdk-core'
+import { CurrencyAmount, TradeType, Ether, Token, Percent, Currency } from '@x-swap-protocol/sdk-core'
 import IUniswapV3Pool from '@uniswap/v3-core/artifacts/contracts/UniswapV3Pool.sol/UniswapV3Pool.json'
 import { TEST_RECIPIENT_ADDRESS } from './addresses'
 
@@ -48,10 +47,10 @@ const V2_ABI = [
 
 const FORK_BLOCK = 16075500
 
-export const ETHER = Ether.onChain(1)
-export const WETH = new Token(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', 18, 'WETH', 'Wrapped Ether')
-export const DAI = new Token(1, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'dai')
-export const USDC = new Token(1, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin')
+export const ETHER = Ether.onChain(50)
+export const WETH = new Token(50, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', 18, 'WETH', 'Wrapped Ether')
+export const DAI = new Token(50, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'dai')
+export const USDC = new Token(50, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin')
 export const FEE_AMOUNT = FeeAmount.MEDIUM
 
 type UniswapPools = {
@@ -134,7 +133,6 @@ export function buildTrade(
   trades: (
     | V2Trade<Currency, Currency, TradeType>
     | V3Trade<Currency, Currency, TradeType>
-    | V4Trade<Currency, Currency, TradeType>
     | MixedRouteTrade<Currency, Currency, TradeType>
   )[]
 ): RouterTrade<Currency, Currency, TradeType> {
@@ -150,13 +148,6 @@ export function buildTrade(
       .filter((trade) => trade instanceof V3Trade)
       .map((trade) => ({
         routev3: trade.route as RouteV3<Currency, Currency>,
-        inputAmount: trade.inputAmount,
-        outputAmount: trade.outputAmount,
-      })),
-    v4Routes: trades
-      .filter((trade) => trade instanceof V4Trade)
-      .map((trade) => ({
-        routev4: trade.route as RouteV4<Currency, Currency>,
         inputAmount: trade.inputAmount,
         outputAmount: trade.outputAmount,
       })),

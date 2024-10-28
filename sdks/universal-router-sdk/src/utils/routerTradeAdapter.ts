@@ -1,7 +1,7 @@
-import { MixedRouteSDK, Trade as RouterTrade } from '@uniswap/router-sdk'
-import { Currency, CurrencyAmount, Ether, Token, TradeType } from '@uniswap/sdk-core'
-import { Pair, Route as V2Route } from '@uniswap/v2-sdk'
-import { Pool, Route as V3Route, FeeAmount } from '@uniswap/v3-sdk'
+import { MixedRouteSDK, Trade as RouterTrade } from '@x-swap-protocol/router-sdk'
+import { Currency, CurrencyAmount, Ether, Token, TradeType } from '@x-swap-protocol/sdk-core'
+import { Pair, Route as V2Route } from '@x-swap-protocol/v2-sdk'
+import { Pool, Route as V3Route, FeeAmount } from '@x-swap-protocol/v3-sdk'
 import { BigNumber } from 'ethers'
 import { ETH_ADDRESS, E_ETH_ADDRESS } from './constants'
 
@@ -18,7 +18,6 @@ export type TokenInRoute = {
 export enum PoolType {
   V2Pool = 'v2-pool',
   V3Pool = 'v3-pool',
-  V4Pool = 'v4-pool',
 }
 
 export type V2Reserve = {
@@ -144,8 +143,6 @@ export class RouterTradeAdapter {
           inputAmount: route.inputAmount,
           outputAmount: route.outputAmount,
         })),
-      // TODO: ROUTE-219 - Support v4 trade in universal-router sdk
-      v4Routes: [],
       mixedRoutes: typedRoutes
         .filter((route) => route.mixedRoute)
         .map((route) => ({
