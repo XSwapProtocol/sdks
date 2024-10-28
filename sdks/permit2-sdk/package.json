@@ -1,10 +1,10 @@
 {
-  "name": "@uniswap/permit2-sdk",
+  "name": "@x-swap-protocol/permit2-sdk",
   "description": "An sdk for interacting with permit2.",
-  "repository": "https://github.com/Uniswap/sdks.git",
+  "repository": "https://github.com/XSwapProtocol/sdks.git",
   "keywords": [
-    "uniswap",
-    "ethereum"
+    "xswapprotocol",
+    "xdc"
   ],
   "license": "MIT",
   "main": "dist/index.js",
@@ -42,7 +42,7 @@
     "extends": "semantic-release-monorepo",
     "branches": [
       {
-        "name": "main",
+        "name": "master",
         "prerelease": false
       }
     ],
