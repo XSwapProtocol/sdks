@@ -20,20 +20,27 @@ import {
 } from '../constants'
 import { InsufficientInputAmountError, InsufficientReservesError } from '../errors'
 
+export interface FactoryConfig {
+  address: string
+  initCode: string
+}
+
 export const computePairAddress = ({
   factoryAddress,
   tokenA,
   tokenB,
+  initCode,
 }: {
   factoryAddress: string
   tokenA: Token
   tokenB: Token
+  initCode?: string
 }): string => {
   const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
   return getCreate2Address(
     factoryAddress,
     keccak256(['bytes'], [pack(['address', 'address'], [token0.address, token1.address])]),
-    INIT_CODE_HASH
+    initCode ?? INIT_CODE_HASH
   )
 }
 export class Pair {
@@ -44,25 +51,25 @@ export class Pair {
    * Returns pair address
    * @param {Token} tokenA first token
    * @param {Token} tokenB second token
-   * @param {string} [_factoryAddress] special factory address
+   * @param {FactoryConfig} [factory] special factory config
    * @return {string}
    */
-  public static getAddress(tokenA: Token, tokenB: Token, _factoryAddress?: string): string {
-    const factoryAddress = _factoryAddress ?? FACTORY_ADDRESS_MAP[tokenA.chainId] ?? FACTORY_ADDRESS_MAP[ChainId.XDC]
-    return computePairAddress({ factoryAddress, tokenA, tokenB })
+  public static getAddress(tokenA: Token, tokenB: Token, factory?: FactoryConfig): string {
+    const factoryAddress = factory?.address ?? FACTORY_ADDRESS_MAP[tokenA.chainId] ?? FACTORY_ADDRESS_MAP[ChainId.XDC]
+    return computePairAddress({ factoryAddress, tokenA, tokenB, initCode: factory?.initCode })
   }
 
   public constructor(
     currencyAmountA: CurrencyAmount<Token>,
     tokenAmountB: CurrencyAmount<Token>,
-    factoryAddress?: string
+    factory?: FactoryConfig
   ) {
     const tokenAmounts = currencyAmountA.currency.sortsBefore(tokenAmountB.currency) // does safety checks
       ? [currencyAmountA, tokenAmountB]
       : [tokenAmountB, currencyAmountA]
     this.liquidityToken = new Token(
       tokenAmounts[0].currency.chainId,
-      Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency, factoryAddress),
+      Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency, factory),
       18,
       'XSP2',
       'XSwap'
