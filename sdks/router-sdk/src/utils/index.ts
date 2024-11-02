@@ -2,21 +2,22 @@ import { Currency, Token } from '@x-swap-protocol/sdk-core'
 import { Pair } from '@x-swap-protocol/v2-sdk'
 import { Pool } from '@x-swap-protocol/v3-sdk'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
+import { TPool } from './TPool'
 
 /**
  * Utility function to return each consecutive section of Pools or Pairs in a MixedRoute
  * @param route
  * @returns a nested array of Pools or Pairs in the order of the route
  */
-export const partitionMixedRouteByProtocol = (route: MixedRouteSDK<Currency, Currency>): (Pool | Pair)[][] => {
+export const partitionMixedRouteByProtocol = (route: MixedRouteSDK<Currency, Currency>): TPool[][] => {
   let acc = []
 
   let left = 0
   let right = 0
   while (right < route.pools.length) {
     if (
-        (route.pools[left] instanceof Pool && route.pools[right] instanceof Pair) ||
-        (route.pools[left] instanceof Pair && route.pools[right] instanceof Pool)
+      (route.pools[left] instanceof Pool && route.pools[right] instanceof Pair) ||
+      (route.pools[left] instanceof Pair && route.pools[right] instanceof Pool)
     ) {
       acc.push(route.pools.slice(left, right))
       left = right
@@ -37,16 +38,16 @@ export const partitionMixedRouteByProtocol = (route: MixedRouteSDK<Currency, Cur
  * @param firstInputToken
  * @returns the output token of the last pool in the array
  */
-export const getOutputOfPools = (pools: (Pool | Pair)[], firstInputToken: Token): Token => {
+export const getOutputOfPools = (pools: TPool[], firstInputToken: Token): Token => {
   const { inputToken: outputToken } = pools.reduce(
-      ({ inputToken }, pool: Pool | Pair): { inputToken: Token } => {
-        if (!pool.involvesToken(inputToken)) throw new Error('PATH')
-        const outputToken: Token = pool.token0.equals(inputToken) ? pool.token1 : pool.token0
-        return {
-          inputToken: outputToken,
-        }
-      },
-      { inputToken: firstInputToken }
+    ({ inputToken }, pool: TPool): { inputToken: Token } => {
+      if (!pool.involvesToken(inputToken)) throw new Error('PATH')
+      const outputToken: Token = pool.token0.equals(inputToken) ? pool.token1 : pool.token0
+      return {
+        inputToken: outputToken,
+      }
+    },
+    { inputToken: firstInputToken }
   )
   return outputToken
 }

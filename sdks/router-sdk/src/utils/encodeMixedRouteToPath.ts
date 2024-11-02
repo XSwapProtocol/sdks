@@ -1,9 +1,9 @@
 import { pack } from '@ethersproject/solidity'
 import { Currency, Token } from '@x-swap-protocol/sdk-core'
 import { Pool } from '@x-swap-protocol/v3-sdk'
-import { Pair } from '@x-swap-protocol/v2-sdk'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
 import { V2_FEE_PATH_PLACEHOLDER } from '../constants'
+import { TPool } from './TPool'
 
 /**
  * Converts a route to a hex encoded path
@@ -15,27 +15,27 @@ export function encodeMixedRouteToPath(route: MixedRouteSDK<Currency, Currency>)
   const firstInputToken: Token = route.input.wrapped
 
   const { path, types } = route.pools.reduce(
-      (
-          { inputToken, path, types }: { inputToken: Token; path: (string | number)[]; types: string[] },
-          pool: Pool | Pair,
-          index
-      ): { inputToken: Token; path: (string | number)[]; types: string[] } => {
-        const outputToken: Token = pool.token0.equals(inputToken) ? pool.token1 : pool.token0
-        if (index === 0) {
-          return {
-            inputToken: outputToken,
-            types: ['address', 'uint24', 'address'],
-            path: [inputToken.address, pool instanceof Pool ? pool.fee : V2_FEE_PATH_PLACEHOLDER, outputToken.address],
-          }
-        } else {
-          return {
-            inputToken: outputToken,
-            types: [...types, 'uint24', 'address'],
-            path: [...path, pool instanceof Pool ? pool.fee : V2_FEE_PATH_PLACEHOLDER, outputToken.address],
-          }
+    (
+      { inputToken, path, types }: { inputToken: Token; path: (string | number)[]; types: string[] },
+      pool: TPool,
+      index
+    ): { inputToken: Token; path: (string | number)[]; types: string[] } => {
+      const outputToken: Token = pool.token0.equals(inputToken) ? pool.token1 : pool.token0
+      if (index === 0) {
+        return {
+          inputToken: outputToken,
+          types: ['address', 'uint24', 'address'],
+          path: [inputToken.address, pool instanceof Pool ? pool.fee : V2_FEE_PATH_PLACEHOLDER, outputToken.address],
         }
-      },
-      { inputToken: firstInputToken, path: [], types: [] }
+      } else {
+        return {
+          inputToken: outputToken,
+          types: [...types, 'uint24', 'address'],
+          path: [...path, pool instanceof Pool ? pool.fee : V2_FEE_PATH_PLACEHOLDER, outputToken.address],
+        }
+      }
+    },
+    { inputToken: firstInputToken, path: [], types: [] }
   )
 
   return pack(types, path)
