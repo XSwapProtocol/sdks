@@ -1,16 +1,7 @@
 import { getCreate2Address } from '@ethersproject/address'
 import { BigNumber } from '@ethersproject/bignumber'
 import { keccak256, pack } from '@ethersproject/solidity'
-import {
-  BigintIsh,
-  ChainId,
-  CurrencyAmount,
-  Percent,
-  Price,
-  sqrt,
-  SUPPORTED_CHAINS,
-  Token,
-} from '@x-swap-protocol/sdk-core'
+import { BigintIsh, ChainId, CurrencyAmount, Percent, Price, sqrt, Token } from '@x-swap-protocol/sdk-core'
 import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 
@@ -18,7 +9,6 @@ import {
   _1000,
   _997,
   BASIS_POINTS,
-  FACTORY_ADDRESS,
   FACTORY_ADDRESS_MAP,
   FIVE,
   INIT_CODE_HASH,
