@@ -1,7 +1,16 @@
 import { getCreate2Address } from '@ethersproject/address'
 import { BigNumber } from '@ethersproject/bignumber'
 import { keccak256, pack } from '@ethersproject/solidity'
-import { BigintIsh, CurrencyAmount, Percent, Price, sqrt, Token } from '@x-swap-protocol/sdk-core'
+import {
+  BigintIsh,
+  ChainId,
+  CurrencyAmount,
+  Percent,
+  Price,
+  sqrt,
+  SUPPORTED_CHAINS,
+  Token,
+} from '@x-swap-protocol/sdk-core'
 import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 
@@ -41,21 +50,32 @@ export class Pair {
   public readonly liquidityToken: Token
   private readonly tokenAmounts: [CurrencyAmount<Token>, CurrencyAmount<Token>]
 
-  public static getAddress(tokenA: Token, tokenB: Token): string {
-    const factoryAddress = FACTORY_ADDRESS_MAP[tokenA.chainId] ?? FACTORY_ADDRESS
+  /**
+   * Returns pair address
+   * @param {Token} tokenA first token
+   * @param {Token} tokenB second token
+   * @param {string} [_factoryAddress] special factory address
+   * @return {string}
+   */
+  public static getAddress(tokenA: Token, tokenB: Token, _factoryAddress?: string): string {
+    const factoryAddress = _factoryAddress ?? FACTORY_ADDRESS_MAP[tokenA.chainId] ?? FACTORY_ADDRESS_MAP[ChainId.XDC]
     return computePairAddress({ factoryAddress, tokenA, tokenB })
   }
 
-  public constructor(currencyAmountA: CurrencyAmount<Token>, tokenAmountB: CurrencyAmount<Token>) {
+  public constructor(
+    currencyAmountA: CurrencyAmount<Token>,
+    tokenAmountB: CurrencyAmount<Token>,
+    factoryAddress?: string
+  ) {
     const tokenAmounts = currencyAmountA.currency.sortsBefore(tokenAmountB.currency) // does safety checks
       ? [currencyAmountA, tokenAmountB]
       : [tokenAmountB, currencyAmountA]
     this.liquidityToken = new Token(
       tokenAmounts[0].currency.chainId,
-      Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency),
+      Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency, factoryAddress),
       18,
-      'UNI-V2',
-      'Uniswap V2'
+      'XSP2',
+      'XSwap'
     )
     this.tokenAmounts = tokenAmounts as [CurrencyAmount<Token>, CurrencyAmount<Token>]
   }
@@ -69,7 +89,7 @@ export class Pair {
   }
 
   /**
-   * Returns the current mid price of the pair in terms of token0, i.e. the ratio of reserve1 to reserve0
+   * Returns the current mid-price of the pair in terms of token0, i.e. the ratio of reserve1 to reserve0
    */
   public get token0Price(): Price<Token, Token> {
     const result = this.tokenAmounts[1].divide(this.tokenAmounts[0])
@@ -77,7 +97,7 @@ export class Pair {
   }
 
   /**
-   * Returns the current mid price of the pair in terms of token1, i.e. the ratio of reserve0 to reserve1
+   * Returns the current mid-price of the pair in terms of token1, i.e. the ratio of reserve0 to reserve1
    */
   public get token1Price(): Price<Token, Token> {
     const result = this.tokenAmounts[0].divide(this.tokenAmounts[1])
