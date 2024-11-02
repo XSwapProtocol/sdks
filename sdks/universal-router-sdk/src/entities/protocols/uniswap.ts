@@ -41,7 +41,7 @@ export type SwapOptions = Omit<RouterSwapOptions, 'inputTokenPermit'> & {
 const REFUND_ETH_PRICE_IMPACT_THRESHOLD = new Percent(50, 100)
 
 interface Swap<TInput extends Currency, TOutput extends Currency> {
-  route: IRoute<TInput, TOutput, Pair | Pool>
+  route: IRoute<TInput, TOutput>
   inputAmount: CurrencyAmount<TInput>
   outputAmount: CurrencyAmount<TOutput>
 }

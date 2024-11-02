@@ -1,4 +1,4 @@
-import { MixedRouteSDK, Trade as RouterTrade } from '@x-swap-protocol/router-sdk'
+import { MixedRouteSDK, TPool, Trade as RouterTrade } from '@x-swap-protocol/router-sdk'
 import { Currency, CurrencyAmount, Ether, Token, TradeType } from '@x-swap-protocol/sdk-core'
 import { Pair, Route as V2Route } from '@x-swap-protocol/v2-sdk'
 import { Pool, Route as V3Route, FeeAmount } from '@x-swap-protocol/v3-sdk'
@@ -161,7 +161,7 @@ export class RouterTradeAdapter {
     return this.toToken(token)
   }
 
-  private static toPoolOrPair = (pool: V3PoolInRoute | V2PoolInRoute): Pool | Pair => {
+  private static toPoolOrPair = (pool: V3PoolInRoute | V2PoolInRoute): TPool => {
     return pool.type === PoolType.V3Pool ? RouterTradeAdapter.toPool(pool) : RouterTradeAdapter.toPair(pool)
   }
 
