@@ -67,12 +67,14 @@ export class Pair {
     const tokenAmounts = currencyAmountA.currency.sortsBefore(tokenAmountB.currency) // does safety checks
       ? [currencyAmountA, tokenAmountB]
       : [tokenAmountB, currencyAmountA]
+    const symbol = factory ? 'FTHM-LP' : 'XSP2'
+    const name = factory ? 'Fathom DEX' : 'XSwap'
     this.liquidityToken = new Token(
       tokenAmounts[0].currency.chainId,
       Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency, factory),
       18,
-      'XSP2',
-      'XSwap'
+      symbol,
+      name
     )
     this.tokenAmounts = tokenAmounts as [CurrencyAmount<Token>, CurrencyAmount<Token>]
   }
