@@ -1,10 +1,6 @@
 import { Percent, V2_FACTORY_ADDRESSES } from '@x-swap-protocol/sdk-core'
 import JSBI from 'jsbi'
 
-/**
- * @deprecated use FACTORY_ADDRESS_MAP instead
- */
-export const FACTORY_ADDRESS = '0x347D14b13a68457186b2450bb2a6c2Fd7B38352f'
 
 export const FACTORY_ADDRESS_MAP: { [chainId: number]: string } = V2_FACTORY_ADDRESSES
 
