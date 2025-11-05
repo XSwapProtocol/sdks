@@ -1,6 +1,4 @@
 import { Currency, Token } from '@x-swap-protocol/sdk-core'
-import { Pair } from '@x-swap-protocol/v2-sdk'
-import { Pool } from '@x-swap-protocol/v3-sdk'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
 import { TPool } from './TPool'
 
@@ -16,8 +14,8 @@ export const partitionMixedRouteByProtocol = (route: MixedRouteSDK<Currency, Cur
   let right = 0
   while (right < route.pools.length) {
     if (
-      (route.pools[left] instanceof Pool && route.pools[right] instanceof Pair) ||
-      (route.pools[left] instanceof Pair && route.pools[right] instanceof Pool)
+      ('fee' in route.pools[left]  &&  'reserve0' in route.pools[right]) ||
+      ('reserve0' in route.pools[left] && 'fee' in route.pools[right])
     ) {
       acc.push(route.pools.slice(left, right))
       left = right

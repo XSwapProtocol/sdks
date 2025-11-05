@@ -4546,7 +4546,7 @@ __metadata:
     "@types/jest": ^24.0.25
     "@uniswap/swap-router-contracts": ^1.3.0
     "@x-swap-protocol/sdk-core": ^1.0.1
-    "@x-swap-protocol/v2-sdk": ^1.2.2
+    "@x-swap-protocol/v2-sdk": ^1.2.3
     "@x-swap-protocol/v3-sdk": ^1.1.0
     prettier: ^2.4.1
     tsdx: ^0.14.1
@@ -4631,6 +4631,19 @@ __metadata:
     tiny-invariant: ^1.1.0
     tiny-warning: ^1.0.3
   checksum: 772093b8d7f6daf12358d8ad04e7f600d5a6def334ee9e74063258a90212d0a82232a7a1bedacf7b64f0211dfd6ec3f8fe4a12f8ee3a3ce5329b49fd8354aa65
+  languageName: node
+  linkType: hard
+
+"@x-swap-protocol/v2-sdk@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "@x-swap-protocol/v2-sdk@npm:1.2.3"
+  dependencies:
+    "@ethersproject/address": ^5.0.2
+    "@ethersproject/solidity": ^5.0.9
+    "@x-swap-protocol/sdk-core": ^1.0.1
+    tiny-invariant: ^1.1.0
+    tiny-warning: ^1.0.3
+  checksum: 9e5a0077a73ceb892abb0118a299641f91aa55fe409b088f8cc17be06ba9cd936726df5436eaef5966fa531abe63c68c820028a7f809ab5d41f882bbea619fed
   languageName: node
   linkType: hard
 

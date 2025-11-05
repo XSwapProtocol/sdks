@@ -249,7 +249,7 @@ export abstract class SwapRouter {
         : validateAndParseAddress(options.recipient)
 
       const mixedRouteIsAllV3 = (route: MixedRouteSDK<Currency, Currency>) => {
-        return route.pools.every((pool) => pool instanceof Pool)
+        return route.pools.every((pool) => 'fee' in pool)
       }
 
       if (singleHop) {

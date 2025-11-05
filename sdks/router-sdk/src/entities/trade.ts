@@ -106,11 +106,11 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
     const poolAddressSet = new Set<string>()
     for (const { route } of this.swaps) {
       for (const pool of route.pools) {
-        if (pool instanceof Pool) {
+        if ('fee' in pool) {
           poolAddressSet.add(Pool.getAddress(pool.token0, pool.token1, (pool as Pool).fee))
-        } else if (pool instanceof Pair) {
+        } else if ('reserve0' in pool) {
           const pair = pool
-          poolAddressSet.add(Pair.getAddress(pair.token0, pair.token1))
+          poolAddressSet.add(Pair.getAddress(pair.token0, pair.token1, pair.factory))
         } else {
           throw new Error('Unexpected pool type in route when constructing trade object')
         }

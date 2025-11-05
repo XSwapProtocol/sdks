@@ -1,6 +1,5 @@
 import { pack } from '@ethersproject/solidity'
 import { Currency, Token } from '@x-swap-protocol/sdk-core'
-import { Pool } from '@x-swap-protocol/v3-sdk'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
 import { V2_FEE_PATH_PLACEHOLDER } from '../constants'
 import { TPool } from './TPool'
@@ -25,13 +24,13 @@ export function encodeMixedRouteToPath(route: MixedRouteSDK<Currency, Currency>)
         return {
           inputToken: outputToken,
           types: ['address', 'uint24', 'address'],
-          path: [inputToken.address, pool instanceof Pool ? pool.fee : V2_FEE_PATH_PLACEHOLDER, outputToken.address],
+          path: [inputToken.address, 'fee' in pool ? pool.fee : V2_FEE_PATH_PLACEHOLDER, outputToken.address],
         }
       } else {
         return {
           inputToken: outputToken,
           types: [...types, 'uint24', 'address'],
-          path: [...path, pool instanceof Pool ? pool.fee : V2_FEE_PATH_PLACEHOLDER, outputToken.address],
+          path: [...path, 'fee' in pool ? pool.fee : V2_FEE_PATH_PLACEHOLDER, outputToken.address],
         }
       }
     },
