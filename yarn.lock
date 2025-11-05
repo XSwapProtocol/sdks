@@ -4525,16 +4525,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@x-swap-protocol/router-sdk@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "@x-swap-protocol/router-sdk@npm:1.2.1"
+"@x-swap-protocol/router-sdk@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@x-swap-protocol/router-sdk@npm:1.2.2"
   dependencies:
     "@ethersproject/abi": ^5.5.0
     "@uniswap/swap-router-contracts": ^1.3.0
     "@x-swap-protocol/sdk-core": ^1.0.1
-    "@x-swap-protocol/v2-sdk": ^1.2.2
+    "@x-swap-protocol/v2-sdk": ^1.2.3
     "@x-swap-protocol/v3-sdk": ^1.1.0
-  checksum: 84b497bf175efb024d846509f58b01be1071d5190206ce6692a5ea30f2a3cec5fcfb27e7cc7000b3b86e3df9cbcc183034737660e4558378fd1192d7b39b6469
+  checksum: 6c59b622836610de6c9840bc71853b8f6c261c9eab19c6e7a730d737a394a66fa6dff60726350b2defa33c762bf65414f63c0e27c85286b04a841b2f76f8572a
   languageName: node
   linkType: hard
 
@@ -4546,7 +4546,7 @@ __metadata:
     "@types/jest": ^24.0.25
     "@uniswap/swap-router-contracts": ^1.3.0
     "@x-swap-protocol/sdk-core": ^1.0.1
-    "@x-swap-protocol/v2-sdk": ^1.2.3
+    "@x-swap-protocol/v2-sdk": ^1.2.4
     "@x-swap-protocol/v3-sdk": ^1.1.0
     prettier: ^2.4.1
     tsdx: ^0.14.1
@@ -4602,9 +4602,9 @@ __metadata:
     "@uniswap/universal-router": 2.0.0-beta.1
     "@uniswap/v2-core": ^1.0.1
     "@uniswap/v3-core": 1.0.0
-    "@x-swap-protocol/router-sdk": ^1.2.1
+    "@x-swap-protocol/router-sdk": ^1.2.2
     "@x-swap-protocol/sdk-core": ^1.0.1
-    "@x-swap-protocol/v2-sdk": ^1.2.2
+    "@x-swap-protocol/v2-sdk": ^1.2.3
     "@x-swap-protocol/v3-sdk": ^1.1.0
     bignumber.js: ^9.0.2
     chai: ^4.3.6
@@ -4621,19 +4621,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@x-swap-protocol/v2-sdk@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "@x-swap-protocol/v2-sdk@npm:1.2.2"
-  dependencies:
-    "@ethersproject/address": ^5.0.2
-    "@ethersproject/solidity": ^5.0.9
-    "@x-swap-protocol/sdk-core": ^1.0.1
-    tiny-invariant: ^1.1.0
-    tiny-warning: ^1.0.3
-  checksum: 772093b8d7f6daf12358d8ad04e7f600d5a6def334ee9e74063258a90212d0a82232a7a1bedacf7b64f0211dfd6ec3f8fe4a12f8ee3a3ce5329b49fd8354aa65
-  languageName: node
-  linkType: hard
-
 "@x-swap-protocol/v2-sdk@npm:^1.2.3":
   version: 1.2.3
   resolution: "@x-swap-protocol/v2-sdk@npm:1.2.3"
@@ -4644,6 +4631,19 @@ __metadata:
     tiny-invariant: ^1.1.0
     tiny-warning: ^1.0.3
   checksum: 9e5a0077a73ceb892abb0118a299641f91aa55fe409b088f8cc17be06ba9cd936726df5436eaef5966fa531abe63c68c820028a7f809ab5d41f882bbea619fed
+  languageName: node
+  linkType: hard
+
+"@x-swap-protocol/v2-sdk@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "@x-swap-protocol/v2-sdk@npm:1.2.4"
+  dependencies:
+    "@ethersproject/address": ^5.0.2
+    "@ethersproject/solidity": ^5.0.9
+    "@x-swap-protocol/sdk-core": ^1.0.1
+    tiny-invariant: ^1.1.0
+    tiny-warning: ^1.0.3
+  checksum: 56f112a2fcdece14847477ff36ca26ce814f9fd0d71fff064b12c7247d89b1dc5c6bda42e312856c9581e011b85f59d485d313bd4ebf27ef9b5b06738554b70a
   languageName: node
   linkType: hard
 
