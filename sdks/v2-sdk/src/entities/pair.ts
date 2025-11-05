@@ -244,7 +244,7 @@ export class Pair {
 
     return [
       outputAmountAfterTax,
-      new Pair(inputReserve.add(inputAmountAfterTax), outputReserve.subtract(outputAmountAfterTax)),
+      new Pair(inputReserve.add(inputAmountAfterTax), outputReserve.subtract(outputAmountAfterTax), this.factory),
     ]
   }
 
@@ -329,7 +329,7 @@ export class Pair {
           JSBI.add(inputAmount.divide(percentAfterSellFees).quotient, ONE) // add 1 for rounding up
         )
       : inputAmount
-    return [inputAmountBeforeTax, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount))]
+    return [inputAmountBeforeTax, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.factory)]
   }
 
   public getLiquidityMinted(
