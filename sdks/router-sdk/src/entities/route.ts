@@ -1,16 +1,16 @@
 // entities/route.ts
 
 import { Pair, Route as V2RouteSDK } from '@x-swap-protocol/v2-sdk'
-import { Route as V3RouteSDK } from '@x-swap-protocol/v3-sdk'
+import { Pool, Route as V3RouteSDK } from '@x-swap-protocol/v3-sdk'
 import { Protocol } from './protocol'
 import { Currency, Price, Token } from '@x-swap-protocol/sdk-core'
 import { MixedRouteSDK } from './mixedRoute/route'
 import { TPool } from '../utils/TPool'
 
-export interface IRoute<TInput extends Currency, TOutput extends Currency> {
+export interface IRoute<TInput extends Currency, TOutput extends Currency, TP extends TPool> {
   protocol: Protocol
   // array of pools if v3 or pairs if v2
-  pools: TPool[]
+  pools: TP[]
   path: Token[]
   midPrice: Price<TInput, TOutput>
   input: TInput
@@ -20,7 +20,7 @@ export interface IRoute<TInput extends Currency, TOutput extends Currency> {
 // V2 route wrapper
 export class RouteV2<TInput extends Currency, TOutput extends Currency>
   extends V2RouteSDK<TInput, TOutput>
-  implements IRoute<TInput, TOutput>
+  implements IRoute<TInput, TOutput, Pair>
 {
   public readonly protocol: Protocol
   public readonly pools: Pair[]
@@ -35,7 +35,7 @@ export class RouteV2<TInput extends Currency, TOutput extends Currency>
 // V3 route wrapper
 export class RouteV3<TInput extends Currency, TOutput extends Currency>
   extends V3RouteSDK<TInput, TOutput>
-  implements IRoute<TInput, TOutput>
+  implements IRoute<TInput, TOutput, Pool>
 {
   public readonly protocol: Protocol = Protocol.V3
   public readonly path: Token[]
@@ -49,7 +49,7 @@ export class RouteV3<TInput extends Currency, TOutput extends Currency>
 // Mixed route wrapper
 export class MixedRoute<TInput extends Currency, TOutput extends Currency>
   extends MixedRouteSDK<TInput, TOutput>
-  implements IRoute<TInput, TOutput>
+  implements IRoute<TInput, TOutput, TPool>
 {
   public readonly protocol: Protocol = Protocol.MIXED
 

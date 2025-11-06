@@ -7,9 +7,10 @@ import { MixedRouteSDK } from './mixedRoute/route'
 import { MixedRouteTrade as MixedRouteTradeSDK } from './mixedRoute/trade'
 import { IRoute, MixedRoute, RouteV2, RouteV3 } from './route'
 import { Protocol } from './protocol'
+import { TPool } from '..'
 
 export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType extends TradeType> {
-  public readonly routes: IRoute<TInput, TOutput>[]
+  public readonly routes: IRoute<TInput, TOutput, TPool>[]
   public readonly tradeType: TTradeType
   private _outputAmount: CurrencyAmount<TOutput> | undefined
   private _inputAmount: CurrencyAmount<TInput> | undefined
@@ -19,7 +20,7 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
    * make up the trade. May consist of swaps in v2 or v3.
    */
   public readonly swaps: {
-    route: IRoute<TInput, TOutput>
+    route: IRoute<TInput, TOutput, TPool>
     inputAmount: CurrencyAmount<TInput>
     outputAmount: CurrencyAmount<TOutput>
   }[]
