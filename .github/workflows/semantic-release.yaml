@@ -10,9 +10,6 @@ jobs:
     name: Release
     environment:
       name: production
-    strategy:
-      matrix:
-        package: [ "permit2-sdk", "router-sdk", "sdk-core", "universal-router-sdk", "v2-sdk", "v3-sdk" ]
 
     runs-on: self-hosted
     permissions:
@@ -35,31 +32,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn --immutable
-
-#      - name: Check Commit Message for ${{ matrix.package }}
-#        id: check_release
-#        run: |
-#          if git log -1 --pretty=format:'%s' | grep -q '.*(${ { matrix.package } }):'; then
-#            echo "::set-output name=should_run::true"
-#          else
-#            echo "::set-output name=should_run::false"
-#          fi
-#        shell: bash
-#
-#      - name: Build ${{ matrix.package }}
-#        if: steps.check_release.outputs.should_run == 'true'
-#        run: yarn workspace @x-swap-protocol/${{ matrix.package }} build
-#
-#
-#      - name: Release ${{ matrix.package }}
-#        if: steps.check_release.outputs.should_run == 'true'
-#        env:
-#          NPM_CONFIG_USERCONFIG: /dev/null
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-#
-#        run: npx semantic-release --no-ci --extends ./publishing/release-rules.cjs
-#        working-directory: sdks/${{ matrix.package }}
 
       - name: Build SDK's
         run: yarn workspace @x-swap-protocol/sdk-core build
