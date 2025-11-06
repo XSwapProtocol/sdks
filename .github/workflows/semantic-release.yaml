@@ -34,7 +34,7 @@ jobs:
         run: yarn --immutable
 
       - name: Build SDK's
-        run: yarn workspace @x-swap-protocol/sdk-core build
+        run: yarn workspace @x-swap-protocol/v2-sdk build
 
       - name: Release Needed SDK's
         env:
