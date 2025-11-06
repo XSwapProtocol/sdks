@@ -4525,16 +4525,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@x-swap-protocol/router-sdk@npm:^1.2.6":
-  version: 1.2.6
-  resolution: "@x-swap-protocol/router-sdk@npm:1.2.6"
+"@x-swap-protocol/router-sdk@npm:^1.2.2":
+  version: 1.2.7
+  resolution: "@x-swap-protocol/router-sdk@npm:1.2.7"
   dependencies:
     "@ethersproject/abi": ^5.5.0
     "@uniswap/swap-router-contracts": ^1.3.0
     "@x-swap-protocol/sdk-core": ^1.0.1
     "@x-swap-protocol/v2-sdk": ^1.2.5
     "@x-swap-protocol/v3-sdk": ^1.1.0
-  checksum: 468020bf5adc23a8f343607044443fbe04689703743eaf5b03feade9b9f84abdb05b08cc014720390de3b5e568630b34f7742032670d0fb0bde461919a0272c8
+  checksum: 9cb6798f9e5ac6d8430b8b5578bdb96da432ddb8b27ff92edb1fca4200eacc7c5bcee13a6f7471d518e655a763da431939424f0c58594c3f6904d2244cdb8cf2
   languageName: node
   linkType: hard
 
@@ -4602,9 +4602,9 @@ __metadata:
     "@uniswap/universal-router": 2.0.0-beta.1
     "@uniswap/v2-core": ^1.0.1
     "@uniswap/v3-core": 1.0.0
-    "@x-swap-protocol/router-sdk": ^1.2.6
+    "@x-swap-protocol/router-sdk": ^1.2.2
     "@x-swap-protocol/sdk-core": ^1.0.1
-    "@x-swap-protocol/v2-sdk": ^1.2.5
+    "@x-swap-protocol/v2-sdk": ^1.2.3
     "@x-swap-protocol/v3-sdk": ^1.1.0
     bignumber.js: ^9.0.2
     chai: ^4.3.6
@@ -4621,7 +4621,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@x-swap-protocol/v2-sdk@npm:^1.2.5":
+"@x-swap-protocol/v2-sdk@npm:^1.2.3, @x-swap-protocol/v2-sdk@npm:^1.2.5":
   version: 1.2.5
   resolution: "@x-swap-protocol/v2-sdk@npm:1.2.5"
   dependencies:
