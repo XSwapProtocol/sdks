@@ -1,4 +1,5 @@
 {
+  "version": "1.22.46",
   "name": "@x-swap-protocol/universal-router-sdk",
   "description": "sdk for integrating with the Universal Router contracts",
   "repository": "https://github.com/XSwapProtocol/sdks.git",
@@ -13,7 +14,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
     "build": "tsdx build",
@@ -34,10 +35,10 @@
     "@uniswap/universal-router": "2.0.0-beta.1",
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v3-core": "1.0.0",
-    "@x-swap-protocol/router-sdk": "^1.2.2",
-    "@x-swap-protocol/sdk-core": "^1.0.1",
-    "@x-swap-protocol/v2-sdk": "^1.2.3",
-    "@x-swap-protocol/v3-sdk": "^1.1.0",
+    "@x-swap-protocol/router-sdk": "^1.2.8",
+    "@x-swap-protocol/sdk-core": "^1.0.2",
+    "@x-swap-protocol/v2-sdk": "^1.2.6",
+    "@x-swap-protocol/v3-sdk": "^1.1.1",
     "bignumber.js": "^9.0.2",
     "ethers": "^5.7.0"
   },

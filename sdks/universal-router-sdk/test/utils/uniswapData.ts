@@ -16,7 +16,7 @@ import { CurrencyAmount, TradeType, Ether, Token, Percent, Currency } from '@x-s
 import IUniswapV3Pool from '@uniswap/v3-core/artifacts/contracts/UniswapV3Pool.sol/UniswapV3Pool.json'
 import { TEST_RECIPIENT_ADDRESS } from './addresses'
 
-const V2_FACTORY = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
+const V2_FACTORY = '0x347D14b13a68457186b2450bb2a6c2Fd7B38352f'
 const V2_ABI = [
   {
     constant: true,
@@ -47,35 +47,38 @@ const V2_ABI = [
 
 const FORK_BLOCK = 16075500
 
-export const ETHER = Ether.onChain(50)
-export const WETH = new Token(50, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', 18, 'WETH', 'Wrapped Ether')
-export const DAI = new Token(50, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'dai')
-export const USDC = new Token(50, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin')
-export const FEE_AMOUNT = FeeAmount.MEDIUM
+export const XDC = Ether.onChain(50)
+export const WXDC = new Token(50, '0x951857744785E80e2De051c32EE7b25f9c458C42', 18, 'WXDC', 'Wrapped XDC')
+export const xUSDT = new Token(50, '0xD4B5f10D61916Bd6E0860144a91Ac658dE8a1437', 6, 'xUSDT', 'Bridget USDT')
+export const USDC = new Token(50, '0xfA2958CB79b0491CC627c1557F441eF849Ca8eb1', 6, 'USDC', 'USDC')
+export const XSP = new Token(50, '0x36726235dAdbdb4658D33E62a249dCA7c4B2bC68', 18, 'XSP', 'XSP Token')
+export const CGO = new Token(50, '0x8f9920283470F52128bF11B0c14E798bE704fD15', 18, 'CGO', 'Comtech Gold')
+export const FEE_MEDIUM = FeeAmount.MEDIUM
 
 type UniswapPools = {
-  WETH_USDC_V2: Pair
-  USDC_DAI_V2: Pair
-  WETH_USDC_V3: Pool
-  WETH_USDC_V3_LOW_FEE: Pool
-  USDC_DAI_V3: Pool
+  WXDC_xUSDT_V2: Pair
+  XSP_WXDC_V2: Pair
+  WXDC_USDC_V3: Pool
+  WXDC_USDC_V3_LOW_FEE: Pool
+  USDC_CGO_V3: Pool
 }
 
-export async function getUniswapPools(forkBlock?: number): Promise<UniswapPools> {
+export async function getXSwapPools(forkBlock?: number): Promise<UniswapPools> {
   const fork = forkBlock ?? FORK_BLOCK
-  const WETH_USDC_V2 = await getPair(WETH, USDC, fork)
-  const USDC_DAI_V2 = await getPair(USDC, DAI, fork)
 
-  const WETH_USDC_V3 = await getPool(WETH, USDC, FEE_AMOUNT, fork)
-  const WETH_USDC_V3_LOW_FEE = await getPool(WETH, USDC, FeeAmount.LOW, fork)
-  const USDC_DAI_V3 = await getPool(USDC, DAI, FeeAmount.LOW, fork)
+  const WXDC_xUSDT_V2 = await getPair(WXDC, xUSDT, fork)
+    const XSP_WXDC_V2 = await getPair(XSP, WXDC, fork)
+
+  const WXDC_USDC_V3 = await getPool(WXDC, USDC, FEE_MEDIUM, fork)
+  const WXDC_USDC_V3_LOW_FEE = await getPool(WXDC, USDC, FeeAmount.LOW, fork)
+  const USDC_CGO_V3 = await getPool(USDC, CGO, FeeAmount.LOW, fork)
 
   return {
-    WETH_USDC_V2,
-    USDC_DAI_V2,
-    WETH_USDC_V3,
-    WETH_USDC_V3_LOW_FEE,
-    USDC_DAI_V3,
+    WXDC_xUSDT_V2,
+    XSP_WXDC_V2,
+    WXDC_USDC_V3,
+    WXDC_USDC_V3_LOW_FEE,
+    USDC_CGO_V3,
   }
 }
 

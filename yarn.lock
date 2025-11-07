@@ -4525,16 +4525,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@x-swap-protocol/router-sdk@npm:^1.2.2":
-  version: 1.2.7
-  resolution: "@x-swap-protocol/router-sdk@npm:1.2.7"
+"@x-swap-protocol/router-sdk@npm:^1.2.8":
+  version: 1.2.8
+  resolution: "@x-swap-protocol/router-sdk@npm:1.2.8"
   dependencies:
     "@ethersproject/abi": ^5.5.0
     "@uniswap/swap-router-contracts": ^1.3.0
-    "@x-swap-protocol/sdk-core": ^1.0.1
-    "@x-swap-protocol/v2-sdk": ^1.2.5
-    "@x-swap-protocol/v3-sdk": ^1.1.0
-  checksum: 9cb6798f9e5ac6d8430b8b5578bdb96da432ddb8b27ff92edb1fca4200eacc7c5bcee13a6f7471d518e655a763da431939424f0c58594c3f6904d2244cdb8cf2
+    "@x-swap-protocol/sdk-core": ^1.0.2
+    "@x-swap-protocol/v2-sdk": ^1.2.6
+    "@x-swap-protocol/v3-sdk": ^1.1.1
+  checksum: fe054f7361c1a390ecd8b4cc1f907534420f624911982b55bc805d28fabe9bcc3aafdf357f1225a633eb6387aaa53eb47f58c805345be8f69e209362aa2f4cd9
   languageName: node
   linkType: hard
 
@@ -4552,23 +4552,6 @@ __metadata:
     tsdx: ^0.14.1
   languageName: unknown
   linkType: soft
-
-"@x-swap-protocol/sdk-core@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@x-swap-protocol/sdk-core@npm:1.0.1"
-  dependencies:
-    "@ethersproject/address": ^5.0.2
-    "@ethersproject/bytes": ^5.7.0
-    "@ethersproject/keccak256": 5.7.0
-    "@ethersproject/strings": 5.7.0
-    big.js: ^5.2.2
-    decimal.js-light: ^2.5.0
-    jsbi: ^3.1.4
-    tiny-invariant: ^1.1.0
-    toformat: ^2.0.0
-  checksum: 7c8aed465043de8ea96e004188db691c072314519bed47d6a3f73b0e973586e7f4c45bc45505989d7285c411ed44a428ddc7d8ca19cb34913f7b934eb536a207
-  languageName: node
-  linkType: hard
 
 "@x-swap-protocol/sdk-core@npm:^1.0.2":
   version: 1.0.2
@@ -4619,10 +4602,10 @@ __metadata:
     "@uniswap/universal-router": 2.0.0-beta.1
     "@uniswap/v2-core": ^1.0.1
     "@uniswap/v3-core": 1.0.0
-    "@x-swap-protocol/router-sdk": ^1.2.2
-    "@x-swap-protocol/sdk-core": ^1.0.1
-    "@x-swap-protocol/v2-sdk": ^1.2.3
-    "@x-swap-protocol/v3-sdk": ^1.1.0
+    "@x-swap-protocol/router-sdk": ^1.2.8
+    "@x-swap-protocol/sdk-core": ^1.0.2
+    "@x-swap-protocol/v2-sdk": ^1.2.6
+    "@x-swap-protocol/v3-sdk": ^1.1.1
     bignumber.js: ^9.0.2
     chai: ^4.3.6
     dotenv: ^16.0.3
@@ -4637,19 +4620,6 @@ __metadata:
     typescript: ^4.3.3
   languageName: unknown
   linkType: soft
-
-"@x-swap-protocol/v2-sdk@npm:^1.2.3, @x-swap-protocol/v2-sdk@npm:^1.2.5":
-  version: 1.2.5
-  resolution: "@x-swap-protocol/v2-sdk@npm:1.2.5"
-  dependencies:
-    "@ethersproject/address": ^5.0.2
-    "@ethersproject/solidity": ^5.0.9
-    "@x-swap-protocol/sdk-core": ^1.0.1
-    tiny-invariant: ^1.1.0
-    tiny-warning: ^1.0.3
-  checksum: e9c35eda2d05aecdf6574eb15170aac6855ab329aa604b52d975ba96c8a8950da2a189aa0c15f875de3d3850f7d151a62f7c7f8c6fdfe3a9c78f2544b613b2e6
-  languageName: node
-  linkType: hard
 
 "@x-swap-protocol/v2-sdk@npm:^1.2.6":
   version: 1.2.6
@@ -4679,22 +4649,6 @@ __metadata:
     tsdx: ^0.14.1
   languageName: unknown
   linkType: soft
-
-"@x-swap-protocol/v3-sdk@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@x-swap-protocol/v3-sdk@npm:1.1.0"
-  dependencies:
-    "@ethersproject/abi": ^5.5.0
-    "@ethersproject/solidity": ^5.0.9
-    "@uniswap/swap-router-contracts": ^1.3.0
-    "@uniswap/v3-periphery": ^1.1.1
-    "@uniswap/v3-staker": 1.0.0
-    "@x-swap-protocol/sdk-core": ^1.0.1
-    tiny-invariant: ^1.1.0
-    tiny-warning: ^1.0.3
-  checksum: 5f0a4eba5b0831f20def9116f8f0c0fdf92e926b82ae02940af1ee7ca80c03afe41f04b04509693241f273c7814225348450b349c2ec60c10410a1d2de2333b1
-  languageName: node
-  linkType: hard
 
 "@x-swap-protocol/v3-sdk@npm:^1.1.1":
   version: 1.1.1
@@ -11304,13 +11258,6 @@ __metadata:
   version: 3.1.4
   resolution: "jsbi@npm:3.1.4"
   checksum: 8dad8122b5060642d5763405f3c210c385747d5b5e95639e8bddbb2bb5d06fc55a25c6d7d7dec7cbc071d4db58a9525578d29a58d1357976c03d75b3712f83a4
-  languageName: node
-  linkType: hard
-
-"jsbi@npm:^3.1.4":
-  version: 3.2.5
-  resolution: "jsbi@npm:3.2.5"
-  checksum: 642d1bb139ad1c1e96c4907eb159565e980a0d168487626b493d0d0b7b341da0e43001089d3b21703fe17b18a7a6c0f42c92026f71d54471ed0a0d1b3015ec0f
   languageName: node
   linkType: hard
 

@@ -14,6 +14,7 @@ import {
   getOutputOfPools,
   encodeMixedRouteToPath,
   partitionMixedRouteByProtocol,
+  TPool,
 } from '@x-swap-protocol/router-sdk'
 import { Permit2Permit } from '../../utils/inputTokens'
 import { Currency, TradeType, CurrencyAmount, Percent } from '@x-swap-protocol/sdk-core'
@@ -41,7 +42,7 @@ export type SwapOptions = Omit<RouterSwapOptions, 'inputTokenPermit'> & {
 const REFUND_ETH_PRICE_IMPACT_THRESHOLD = new Percent(50, 100)
 
 interface Swap<TInput extends Currency, TOutput extends Currency> {
-  route: IRoute<TInput, TOutput>
+  route: IRoute<TInput, TOutput, TPool>
   inputAmount: CurrencyAmount<TInput>
   outputAmount: CurrencyAmount<TOutput>
 }
@@ -88,6 +89,7 @@ export class UniswapTrade implements Command {
     for (const swap of this.trade.swaps) {
       switch (swap.route.protocol) {
         case Protocol.V2:
+        case Protocol.FATHOM:
           addV2Swap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody)
           break
         case Protocol.V3:
