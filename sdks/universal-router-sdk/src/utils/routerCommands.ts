@@ -43,6 +43,11 @@ export enum CommandType {
   SEAPORT_V1_4 = 0x20,
   EXECUTE_SUB_PLAN = 0x21,
   APPROVE_ERC20 = 0x22,
+
+  V2_F_EXACT_IN = 0x28,
+  V2_F_EXACT_OUT = 0x29,
+  V3_U_EXACT_IN = 0x2a,
+  V3_U_EXACT_OUT = 0x2b,
 }
 
 const ALLOW_REVERT_FLAG = 0x80
@@ -86,6 +91,10 @@ const ABI_DEFINITION: { [key in CommandType]: string[] } = {
   [CommandType.V3_SWAP_EXACT_OUT]: ['address', 'uint256', 'uint256', 'bytes', 'bool'],
   [CommandType.V2_SWAP_EXACT_IN]: ['address', 'uint256', 'uint256', 'address[]', 'bool'],
   [CommandType.V2_SWAP_EXACT_OUT]: ['address', 'uint256', 'uint256', 'address[]', 'bool'],
+  [CommandType.V3_U_EXACT_IN]: ['address', 'uint256', 'uint256', 'bytes', 'bool'],
+  [CommandType.V3_U_EXACT_OUT]: ['address', 'uint256', 'uint256', 'bytes', 'bool'],
+  [CommandType.V2_F_EXACT_IN]: ['address', 'uint256', 'uint256', 'address[]', 'bool'],
+  [CommandType.V2_F_EXACT_OUT]: ['address', 'uint256', 'uint256', 'address[]', 'bool'],
 
   // Token Actions and Checks
   [CommandType.WRAP_ETH]: ['address', 'uint256'],
