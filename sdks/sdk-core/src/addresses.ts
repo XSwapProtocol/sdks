@@ -27,6 +27,7 @@ export const XSP_ADDRESSES: AddressMap = {
   [ChainId.APOTHEM]: '0x339c94081D1F7808FeEa3E6E5B1feA864c3cef43',
 }
 
+// @deprecated please avoid using of XTT. Token migrated to XSP
 export const XTT_ADDRESSES: AddressMap = {
   [ChainId.XDC]: '0x17476dc3eda45aD916cEAdDeA325B240A7FB259D',
   [ChainId.APOTHEM]: '0xFdCf8bD44EC46a71a13f00F4328F6b65adc8BCf9',
@@ -46,7 +47,7 @@ export const V2_ROUTER_ADDRESSES: AddressMap = {
 }
 
 // XDC v3 addresses
-const XDC_ADDRESSES: ChainAddresses = {
+export const XDC_ADDRESSES: ChainAddresses = {
   v3CoreFactoryAddress: '0x30f317a9ec0f0d06d5de0f8d248ec3506b7e4a8a',
   multicallAddress: '0x6d4393cf8b3adb3534a185d277db0c2ab4bac116',
   quoterAddress: '0x4d8a32353c9c25903e771c47e258c051931c2ef5',
