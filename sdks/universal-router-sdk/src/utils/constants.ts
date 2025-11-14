@@ -45,8 +45,6 @@ export const WETH_ADDRESS = (chainId: number): string => {
   return CHAIN_CONFIGS[chainId as ChainId].weth
 }
 
-// @deprecated please use PERMIT2_ADDRESSES[ChainId]
-export const PERMIT2_ADDRESS = '0x941acf4e2df51bf43c3c4167631dbefa268bc9d7'
 export const PERMIT2_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.XDC]: '0x941acf4e2df51bf43c3c4167631dbefa268bc9d7',
   [ChainId.APOTHEM]: '0x4b722f4a38f97e4078260de0c47f34ae0c404dbf',
