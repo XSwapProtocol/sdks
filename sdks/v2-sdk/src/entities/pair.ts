@@ -1,7 +1,16 @@
 import { getCreate2Address } from '@ethersproject/address'
 import { BigNumber } from '@ethersproject/bignumber'
 import { keccak256, pack } from '@ethersproject/solidity'
-import { BigintIsh, ChainId, CurrencyAmount, Percent, Price, sqrt, Token } from '@x-swap-protocol/sdk-core'
+import {
+  BigintIsh,
+  ChainId,
+  CurrencyAmount,
+  FactoryConfig,
+  Percent,
+  Price,
+  sqrt,
+  Token,
+} from '@x-swap-protocol/sdk-core'
 import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 
@@ -19,11 +28,6 @@ import {
   ZERO_PERCENT,
 } from '../constants'
 import { InsufficientInputAmountError, InsufficientReservesError } from '../errors'
-
-export interface FactoryConfig {
-  address: string
-  initCode: string
-}
 
 export const computePairAddress = ({
   factoryAddress,
@@ -329,7 +333,10 @@ export class Pair {
           JSBI.add(inputAmount.divide(percentAfterSellFees).quotient, ONE) // add 1 for rounding up
         )
       : inputAmount
-    return [inputAmountBeforeTax, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.factory)]
+    return [
+      inputAmountBeforeTax,
+      new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.factory),
+    ]
   }
 
   public getLiquidityMinted(
