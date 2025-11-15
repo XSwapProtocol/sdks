@@ -1,7 +1,7 @@
-import { BigintIsh, CurrencyAmount, Price, Token } from '@x-swap-protocol/sdk-core'
+import { BigintIsh, CurrencyAmount, FactoryConfig, Price, Token } from '@x-swap-protocol/sdk-core'
 import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
-import { FACTORY_ADDRESS, FeeAmount, TICK_SPACINGS } from '../constants'
+import { FACTORY_ADDRESS, FeeAmount, POOL_INIT_CODE_HASH, TICK_SPACINGS } from '../constants'
 import { NEGATIVE_ONE, Q192 } from '../internalConstants'
 import { computePoolAddress } from '../utils/computePoolAddress'
 import { v3Swap } from '../utils/v3swap'
@@ -19,6 +19,7 @@ const NO_TICK_DATA_PROVIDER_DEFAULT = new NoTickDataProvider()
  * Represents a V3 pool
  */
 export class Pool {
+  public readonly factory?: FactoryConfig
   public readonly token0: Token
   public readonly token1: Token
   public readonly fee: FeeAmount
@@ -30,19 +31,13 @@ export class Pool {
   private _token0Price?: Price<Token, Token>
   private _token1Price?: Price<Token, Token>
 
-  public static getAddress(
-    tokenA: Token,
-    tokenB: Token,
-    fee: FeeAmount,
-    initCodeHashManualOverride?: string,
-    factoryAddressOverride?: string
-  ): string {
+  public static getAddress(tokenA: Token, tokenB: Token, fee: FeeAmount, factory?: FactoryConfig): string {
     return computePoolAddress({
-      factoryAddress: factoryAddressOverride ?? FACTORY_ADDRESS,
+      factoryAddress: factory ? factory.address : FACTORY_ADDRESS,
       fee,
       tokenA,
       tokenB,
-      initCodeHashManualOverride,
+      initCodeHashManualOverride: factory ? factory.initCode : POOL_INIT_CODE_HASH,
     })
   }
 
@@ -55,6 +50,7 @@ export class Pool {
    * @param liquidity The current value of in range liquidity
    * @param tickCurrent The current tick of the pool
    * @param ticks The current state of the pool ticks or a data provider that can return tick data
+   * @param factory Factory address and init code hash to use for creating the pool.
    */
   public constructor(
     tokenA: Token,
@@ -63,7 +59,8 @@ export class Pool {
     sqrtRatioX96: BigintIsh,
     liquidity: BigintIsh,
     tickCurrent: number,
-    ticks: TickDataProvider | (Tick | TickConstructorArgs)[] = NO_TICK_DATA_PROVIDER_DEFAULT
+    ticks: TickDataProvider | (Tick | TickConstructorArgs)[] = NO_TICK_DATA_PROVIDER_DEFAULT,
+    factory?: FactoryConfig
   ) {
     invariant(Number.isInteger(fee) && fee < 1_000_000, 'FEE')
 
@@ -81,6 +78,7 @@ export class Pool {
     this.liquidity = JSBI.BigInt(liquidity)
     this.tickCurrent = tickCurrent
     this.tickDataProvider = Array.isArray(ticks) ? new TickListDataProvider(ticks, TICK_SPACINGS[fee]) : ticks
+    this.factory = factory
   }
 
   /**
