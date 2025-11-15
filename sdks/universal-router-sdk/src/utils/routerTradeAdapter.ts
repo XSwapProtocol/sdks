@@ -1,6 +1,6 @@
 import { MixedRouteSDK, TPool, Trade as RouterTrade } from '@x-swap-protocol/router-sdk'
-import { Currency, CurrencyAmount, Ether, Token, TradeType } from '@x-swap-protocol/sdk-core'
-import { FactoryConfig, Pair, Route as V2Route } from '@x-swap-protocol/v2-sdk'
+import { Currency, CurrencyAmount, Ether, FactoryConfig, Token, TradeType } from '@x-swap-protocol/sdk-core'
+import { Pair, Route as V2Route } from '@x-swap-protocol/v2-sdk'
 import { Pool, Route as V3Route, FeeAmount } from '@x-swap-protocol/v3-sdk'
 import { BigNumber } from 'ethers'
 import { ETH_ADDRESS, E_ETH_ADDRESS } from './constants'
@@ -8,7 +8,7 @@ import { ETH_ADDRESS, E_ETH_ADDRESS } from './constants'
 type TokenInRoute = Pick<Token, 'address' | 'chainId' | 'symbol' | 'decimals'> & {
   buyFeeBps?: string
   sellFeeBps?: string
-  name?: Token['name'];
+  name?: Token['name']
 }
 
 export enum PoolType {
@@ -99,7 +99,10 @@ export class RouterTradeAdapter {
       const inputAmount = CurrencyAmount.fromRawAmount(parsedCurrencyIn, rawAmountIn)
       const outputAmount = CurrencyAmount.fromRawAmount(parsedCurrencyOut, rawAmountOut)
 
-      const isOnlyV2 = RouterTradeAdapter.isVersionedRoute<V2PoolInRoute>([PoolType.V2XSwapPool, PoolType.V2FathomPool], subRoute)
+      const isOnlyV2 = RouterTradeAdapter.isVersionedRoute<V2PoolInRoute>(
+        [PoolType.V2XSwapPool, PoolType.V2FathomPool],
+        subRoute
+      )
       const isOnlyV3 = RouterTradeAdapter.isVersionedRoute<V3PoolInRoute>([PoolType.V3Pool], subRoute)
 
       return {
