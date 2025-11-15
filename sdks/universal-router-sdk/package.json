@@ -36,9 +36,9 @@
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v3-core": "1.0.0",
     "@x-swap-protocol/router-sdk": "^1.2.8",
-    "@x-swap-protocol/sdk-core": "^1.0.2",
-    "@x-swap-protocol/v2-sdk": "^1.2.6",
-    "@x-swap-protocol/v3-sdk": "^1.1.1",
+    "@x-swap-protocol/sdk-core": "^1.0.4",
+    "@x-swap-protocol/v2-sdk": "^1.2.7",
+    "@x-swap-protocol/v3-sdk": "^1.1.2",
     "bignumber.js": "^9.0.2",
     "ethers": "^5.7.0"
   },
