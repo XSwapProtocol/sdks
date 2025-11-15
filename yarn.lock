@@ -4620,9 +4620,9 @@ __metadata:
     "@uniswap/v2-core": ^1.0.1
     "@uniswap/v3-core": 1.0.0
     "@x-swap-protocol/router-sdk": ^1.2.8
-    "@x-swap-protocol/sdk-core": ^1.0.2
-    "@x-swap-protocol/v2-sdk": ^1.2.6
-    "@x-swap-protocol/v3-sdk": ^1.1.1
+    "@x-swap-protocol/sdk-core": ^1.0.4
+    "@x-swap-protocol/v2-sdk": ^1.2.7
+    "@x-swap-protocol/v3-sdk": ^1.1.2
     bignumber.js: ^9.0.2
     chai: ^4.3.6
     dotenv: ^16.0.3
@@ -4648,6 +4648,19 @@ __metadata:
     tiny-invariant: ^1.1.0
     tiny-warning: ^1.0.3
   checksum: e728b66cadb80c262e6ed60901b47fed7ca52f6eb6ddadd25783ae4c3688008f65c42655c09b239f4f6c64aab76cd40464cc51bd42c45a21138338cad79431cb
+  languageName: node
+  linkType: hard
+
+"@x-swap-protocol/v2-sdk@npm:^1.2.7":
+  version: 1.2.7
+  resolution: "@x-swap-protocol/v2-sdk@npm:1.2.7"
+  dependencies:
+    "@ethersproject/address": ^5.0.2
+    "@ethersproject/solidity": ^5.0.9
+    "@x-swap-protocol/sdk-core": ^1.0.4
+    tiny-invariant: ^1.1.0
+    tiny-warning: ^1.0.3
+  checksum: 514bf2bdbd2e55d62e0221cd5b6ede73536348cca483303ca8e07b03b3b1203dfc06f3a8962f9613238af57051bb1f7720a43beb0197defcc3cf7bb439d12a07
   languageName: node
   linkType: hard
 
@@ -4680,6 +4693,22 @@ __metadata:
     tiny-invariant: ^1.1.0
     tiny-warning: ^1.0.3
   checksum: 52c257334466d15cef90ca1c19ad3690850d55a1ec6c8c637c1c0b646397511a2c533d3d09a70c30e0ed2a26cda7c8d1af16a0be30136a9a688d15ad5fc1b9d8
+  languageName: node
+  linkType: hard
+
+"@x-swap-protocol/v3-sdk@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@x-swap-protocol/v3-sdk@npm:1.1.2"
+  dependencies:
+    "@ethersproject/abi": ^5.5.0
+    "@ethersproject/solidity": ^5.0.9
+    "@uniswap/swap-router-contracts": ^1.3.0
+    "@uniswap/v3-periphery": ^1.1.1
+    "@uniswap/v3-staker": 1.0.0
+    "@x-swap-protocol/sdk-core": ^1.0.4
+    tiny-invariant: ^1.1.0
+    tiny-warning: ^1.0.3
+  checksum: de5a6c357ded6aced028d13337cf77329dd8705e7b89fdf844cc4341c88133d2167f8e0766fd2c994047ea6aad1d3e5621b32cfa12acfcc3715a0e1ab211ead9
   languageName: node
   linkType: hard
 
