@@ -34,8 +34,8 @@ jobs:
         run: yarn --immutable
 
       - name: Build SDK's
-#        run: yarn g:build
-        run: yarn workspace @x-swap-protocol/router-sdk build
+        run: yarn g:build
+#        run: yarn workspace @x-swap-protocol/router-sdk build
 
       - name: Release Needed SDK's
         env:
