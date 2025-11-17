@@ -63,7 +63,7 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
     }
     // wrap v3 routes
     for (const { routev3, inputAmount, outputAmount } of v3Routes) {
-      const route = new RouteV3(routev3)
+      const route = new RouteV3(routev3, routev3.pools[0].factory ? Protocol.UNI_V3 : Protocol.V3)
       this.routes.push(route)
       this.swaps.push({
         route,

@@ -37,12 +37,13 @@ export class RouteV3<TInput extends Currency, TOutput extends Currency>
   extends V3RouteSDK<TInput, TOutput>
   implements IRoute<TInput, TOutput, Pool>
 {
-  public readonly protocol: Protocol = Protocol.V3
+  public readonly protocol: Protocol
   public readonly path: Token[]
 
-  constructor(v3Route: V3RouteSDK<TInput, TOutput>) {
+  constructor(v3Route: V3RouteSDK<TInput, TOutput>, protocol: Protocol = Protocol.V3) {
     super(v3Route.pools, v3Route.input, v3Route.output)
     this.path = v3Route.tokenPath
+    this.protocol = protocol
   }
 }
 

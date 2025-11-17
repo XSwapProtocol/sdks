@@ -352,6 +352,7 @@ export abstract class SwapRouter {
         trades.swaps.every(
           (swap) =>
             swap.route.protocol === Protocol.V3 ||
+            swap.route.protocol === Protocol.UNI_V3 ||
             swap.route.protocol === Protocol.V2 ||
             swap.route.protocol === Protocol.FATHOM ||
             swap.route.protocol === Protocol.MIXED
@@ -374,7 +375,7 @@ export abstract class SwapRouter {
               trades.tradeType
             )
           )
-        } else if (route.protocol === Protocol.V3) {
+        } else if (route.protocol === Protocol.V3 || route.protocol === Protocol.UNI_V3) {
           individualTrades.push(
             V3Trade.createUncheckedTrade({
               route: route as RouteV3<Currency, Currency>,
