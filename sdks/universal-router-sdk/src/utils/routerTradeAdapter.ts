@@ -170,7 +170,8 @@ export class RouterTradeAdapter {
   private static toPoolOrPair = (pool: V3PoolInRoute | V2PoolInRoute): TPool => {
     return pool.type === PoolType.V3Pool || pool.type === PoolType.V3UniPool
       ? RouterTradeAdapter.toPool(pool)
-      : RouterTradeAdapter.toPair(pool)
+      : // @ts-ignore
+        RouterTradeAdapter.toPair(pool)
   }
 
   private static toToken(token: TokenInRoute): Token {
@@ -203,6 +204,7 @@ export class RouterTradeAdapter {
       sqrtRatioX96,
       liquidity,
       parseInt(tickCurrent),
+      undefined,
       factory
     )
   }
