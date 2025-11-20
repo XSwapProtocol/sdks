@@ -1,4 +1,4 @@
-import { ChainId } from '@x-swap-protocol/sdk-core'
+import { ChainId, FactoryConfig } from '@x-swap-protocol/sdk-core'
 
 // @deprecated please use FACTORY_ADDRESSES[ChainId]
 export const FACTORY_ADDRESS = '0x30f317a9ec0f0d06d5de0f8d248ec3506b7e4a8a'
@@ -40,4 +40,9 @@ export const TICK_SPACINGS: { [amount in FeeAmount]: number } = {
   [FeeAmount.LOW]: 10,
   [FeeAmount.MEDIUM]: 60,
   [FeeAmount.HIGH]: 200,
+}
+
+export const UniV3Factory: FactoryConfig = {
+  address: '0xcb2436774C3e191c85056d248EF4260ce5f27A9D',
+  initCode: '0xe34f199b19b2b4f47f68442619d555527d244f78a3297ea89325f843f87b8b54',
 }
