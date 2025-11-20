@@ -4525,16 +4525,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@x-swap-protocol/router-sdk@npm:^1.2.9":
-  version: 1.2.9
-  resolution: "@x-swap-protocol/router-sdk@npm:1.2.9"
+"@x-swap-protocol/router-sdk@npm:^1.2.10":
+  version: 1.2.10
+  resolution: "@x-swap-protocol/router-sdk@npm:1.2.10"
   dependencies:
     "@ethersproject/abi": ^5.5.0
     "@uniswap/swap-router-contracts": ^1.3.0
     "@x-swap-protocol/sdk-core": ^1.0.4
     "@x-swap-protocol/v2-sdk": ^1.2.7
-    "@x-swap-protocol/v3-sdk": ^1.1.2
-  checksum: b0064d21917a8a93616a12ae4633857b501639b43bd1458ef5bda6dacc5d282f8cf5ab6921eac7892a1627ee039a7967245bd57bfac4c1f8d775770f6e384883
+    "@x-swap-protocol/v3-sdk": ^1.1.3
+  checksum: 544d2ffec301f2931b28edb5b5b0ef2a8f04ee277c9d81a0748303d6c31c5f98061756756627683f73063b9b88b56f35eb7ba7c3aec45576c9aac9846d23c6ee
   languageName: node
   linkType: hard
 
@@ -4602,10 +4602,10 @@ __metadata:
     "@uniswap/universal-router": 2.0.0-beta.1
     "@uniswap/v2-core": ^1.0.1
     "@uniswap/v3-core": 1.0.0
-    "@x-swap-protocol/router-sdk": ^1.2.9
+    "@x-swap-protocol/router-sdk": ^1.2.10
     "@x-swap-protocol/sdk-core": ^1.0.4
     "@x-swap-protocol/v2-sdk": ^1.2.7
-    "@x-swap-protocol/v3-sdk": ^1.1.2
+    "@x-swap-protocol/v3-sdk": ^1.1.3
     bignumber.js: ^9.0.2
     chai: ^4.3.6
     dotenv: ^16.0.3
@@ -4649,22 +4649,6 @@ __metadata:
     tsdx: ^0.14.1
   languageName: unknown
   linkType: soft
-
-"@x-swap-protocol/v3-sdk@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@x-swap-protocol/v3-sdk@npm:1.1.2"
-  dependencies:
-    "@ethersproject/abi": ^5.5.0
-    "@ethersproject/solidity": ^5.0.9
-    "@uniswap/swap-router-contracts": ^1.3.0
-    "@uniswap/v3-periphery": ^1.1.1
-    "@uniswap/v3-staker": 1.0.0
-    "@x-swap-protocol/sdk-core": ^1.0.4
-    tiny-invariant: ^1.1.0
-    tiny-warning: ^1.0.3
-  checksum: de5a6c357ded6aced028d13337cf77329dd8705e7b89fdf844cc4341c88133d2167f8e0766fd2c994047ea6aad1d3e5621b32cfa12acfcc3715a0e1ab211ead9
-  languageName: node
-  linkType: hard
 
 "@x-swap-protocol/v3-sdk@npm:^1.1.3":
   version: 1.1.3

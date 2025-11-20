@@ -15,6 +15,7 @@ export enum PoolType {
   V2XSwapPool = 'v2-xswap-pool',
   V2FathomPool = 'v2-fathom-pool',
   V3Pool = 'v3-pool',
+  V3UniPool = 'v3-uni-pool',
 }
 
 export type V2Reserve = {
@@ -35,7 +36,8 @@ export type V2PoolInRoute = {
 }
 
 export type V3PoolInRoute = {
-  type: PoolType.V3Pool
+  type: PoolType.V3Pool | PoolType.V3UniPool
+  factory?: FactoryConfig
   address?: string
   tokenIn: TokenInRoute
   tokenOut: TokenInRoute
@@ -103,7 +105,10 @@ export class RouterTradeAdapter {
         [PoolType.V2XSwapPool, PoolType.V2FathomPool],
         subRoute
       )
-      const isOnlyV3 = RouterTradeAdapter.isVersionedRoute<V3PoolInRoute>([PoolType.V3Pool], subRoute)
+      const isOnlyV3 = RouterTradeAdapter.isVersionedRoute<V3PoolInRoute>(
+        [PoolType.V3Pool, PoolType.V3UniPool],
+        subRoute
+      )
 
       return {
         routev3: isOnlyV3
@@ -163,7 +168,9 @@ export class RouterTradeAdapter {
   }
 
   private static toPoolOrPair = (pool: V3PoolInRoute | V2PoolInRoute): TPool => {
-    return pool.type === PoolType.V3Pool ? RouterTradeAdapter.toPool(pool) : RouterTradeAdapter.toPair(pool)
+    return pool.type === PoolType.V3Pool || pool.type === PoolType.V3UniPool
+      ? RouterTradeAdapter.toPool(pool)
+      : RouterTradeAdapter.toPair(pool)
   }
 
   private static toToken(token: TokenInRoute): Token {
@@ -180,14 +187,23 @@ export class RouterTradeAdapter {
     )
   }
 
-  private static toPool({ fee, sqrtRatioX96, liquidity, tickCurrent, tokenIn, tokenOut }: V3PoolInRoute): Pool {
+  private static toPool({
+    fee,
+    sqrtRatioX96,
+    liquidity,
+    tickCurrent,
+    tokenIn,
+    tokenOut,
+    factory,
+  }: V3PoolInRoute): Pool {
     return new Pool(
       RouterTradeAdapter.toToken(tokenIn),
       RouterTradeAdapter.toToken(tokenOut),
       parseInt(fee) as FeeAmount,
       sqrtRatioX96,
       liquidity,
-      parseInt(tickCurrent)
+      parseInt(tickCurrent),
+      factory
     )
   }
 
