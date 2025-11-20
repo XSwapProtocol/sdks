@@ -370,8 +370,8 @@ export class MixedRouteTrade<TInput extends Currency, TOutput extends Currency, 
     const poolAddressSet = new Set<string>()
     for (const { route } of routes) {
       for (const pool of route.pools) {
-         pool instanceof Pool
-          ? poolAddressSet.add(Pool.getAddress(pool.token0, pool.token1, pool.fee))
+        pool instanceof Pool
+          ? poolAddressSet.add(Pool.getAddress(pool.token0, pool.token1, pool.fee, pool.factory))
           : poolAddressSet.add(Pair.getAddress(pool.token0, pool.token1, pool.factory))
       }
     }
