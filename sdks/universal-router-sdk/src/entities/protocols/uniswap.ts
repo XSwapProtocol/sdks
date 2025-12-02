@@ -95,7 +95,10 @@ export class UniswapTrade implements Command {
           addV2Swap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody, false)
           break
         case Protocol.V3:
-          addV3Swap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody)
+          addV3Swap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody, true)
+          break
+        case Protocol.UNI_V3:
+          addV3Swap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody, false)
           break
         case Protocol.MIXED:
           addMixedSwap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody)
@@ -192,7 +195,7 @@ function addV2Swap<TInput extends Currency, TOutput extends Currency>(
       routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient,
       trade.maximumAmountIn(options.slippageTolerance).quotient.toString(),
       trade.minimumAmountOut(options.slippageTolerance).quotient.toString(),
-      route.path.map((pool) => pool.address),
+      route.path.map((token) => token.wrapped.address),
       payerIsUser,
     ])
   } else if (tradeType == TradeType.EXACT_OUTPUT) {
@@ -200,7 +203,7 @@ function addV2Swap<TInput extends Currency, TOutput extends Currency>(
       routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient,
       trade.minimumAmountOut(options.slippageTolerance).quotient.toString(),
       trade.maximumAmountIn(options.slippageTolerance).quotient.toString(),
-      route.path.map((pool) => pool.address),
+      route.path.map((token) => token.wrapped.address),
       payerIsUser,
     ])
   }
@@ -213,7 +216,8 @@ function addV3Swap<TInput extends Currency, TOutput extends Currency>(
   tradeType: TradeType,
   options: SwapOptions,
   payerIsUser: boolean,
-  routerMustCustody: boolean
+  routerMustCustody: boolean,
+  isXSwap: boolean
 ): void {
   const trade = V3Trade.createUncheckedTrade({
     route: route as RouteV3<TInput, TOutput>,
@@ -224,7 +228,7 @@ function addV3Swap<TInput extends Currency, TOutput extends Currency>(
 
   const path = encodeRouteToPath(route as RouteV3<TInput, TOutput>, trade.tradeType === TradeType.EXACT_OUTPUT)
   if (tradeType == TradeType.EXACT_INPUT) {
-    planner.addCommand(CommandType.V3_SWAP_EXACT_IN, [
+    planner.addCommand(isXSwap ? CommandType.V3_SWAP_EXACT_IN : CommandType.V3_U_EXACT_IN, [
       routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient,
       trade.maximumAmountIn(options.slippageTolerance).quotient.toString(),
       trade.minimumAmountOut(options.slippageTolerance).quotient.toString(),
@@ -232,7 +236,7 @@ function addV3Swap<TInput extends Currency, TOutput extends Currency>(
       payerIsUser,
     ])
   } else if (tradeType == TradeType.EXACT_OUTPUT) {
-    planner.addCommand(CommandType.V3_SWAP_EXACT_OUT, [
+    planner.addCommand(isXSwap ? CommandType.V3_SWAP_EXACT_OUT : CommandType.V3_U_EXACT_OUT, [
       routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient,
       trade.minimumAmountOut(options.slippageTolerance).quotient.toString(),
       trade.maximumAmountIn(options.slippageTolerance).quotient.toString(),
@@ -257,7 +261,7 @@ function addMixedSwap<TInput extends Currency, TOutput extends Currency>(
   // single hop, so it can be reduced to plain v2 or v3 swap logic
   if (route.pools.length === 1) {
     if (route.pools[0] instanceof Pool) {
-      return addV3Swap(planner, swap, tradeType, options, payerIsUser, routerMustCustody)
+      return addV3Swap(planner, swap, tradeType, options, payerIsUser, routerMustCustody, !route.pools[0].factory)
     } else if (route.pools[0] instanceof Pair) {
       return addV2Swap(planner, swap, tradeType, options, payerIsUser, routerMustCustody, !route.pools[0].factory)
     } else {
