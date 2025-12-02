@@ -16,7 +16,7 @@ const CHAIN_CONFIGS: { [key in ChainId]: ChainConfig } = {
   [ChainId.XDC]: {
     permit2: '0x941acf4e2df51bf43c3c4167631dbefa268bc9d7',
     router: '0xe1bcb1c502a545ee85a1881b95cdd46d394d2b2e',
-    beta: '0x16BC9b9fA8c48c9c6D3F96b53D3C94be125dcA82',
+    beta: '0x4524920Bf175339FBD8497702be3960992c8c61B',
     weth: WETH9[ChainId.XDC].address,
     creationBlock: 59782467,
   },
