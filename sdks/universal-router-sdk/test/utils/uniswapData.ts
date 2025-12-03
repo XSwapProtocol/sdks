@@ -67,7 +67,7 @@ export async function getXSwapPools(forkBlock?: number): Promise<UniswapPools> {
   const fork = forkBlock ?? FORK_BLOCK
 
   const WXDC_xUSDT_V2 = await getPair(WXDC, xUSDT, fork)
-    const XSP_WXDC_V2 = await getPair(XSP, WXDC, fork)
+  const XSP_WXDC_V2 = await getPair(XSP, WXDC, fork)
 
   const WXDC_USDC_V3 = await getPool(WXDC, USDC, FEE_MEDIUM, fork)
   const WXDC_USDC_V3_LOW_FEE = await getPool(WXDC, USDC, FeeAmount.LOW, fork)
